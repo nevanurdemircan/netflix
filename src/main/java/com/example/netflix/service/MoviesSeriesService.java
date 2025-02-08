@@ -2,7 +2,7 @@ package com.example.netflix.service;
 
 import com.example.netflix.dto.MoviesSeriesDto;
 import com.example.netflix.entity.MoviesSeries;
-import com.example.netflix.mapper.MoviesSeriesConverter;
+import com.example.netflix.converter.MoviesSeriesConverter;
 import com.example.netflix.repository.MoviesSeriesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

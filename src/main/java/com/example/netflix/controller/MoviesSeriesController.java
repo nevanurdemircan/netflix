@@ -2,8 +2,9 @@ package com.example.netflix.controller;
 
 import com.example.netflix.dto.MoviesSeriesDto;
 import com.example.netflix.entity.MoviesSeries;
-import com.example.netflix.mapper.MoviesSeriesConverter;
+import com.example.netflix.converter.MoviesSeriesConverter;
 import com.example.netflix.service.MoviesSeriesService;
+import com.example.netflix.service.WatchHistoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,8 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.UUID;
 
 @RestController
@@ -21,6 +24,7 @@ import java.util.UUID;
 public class MoviesSeriesController {
     private final MoviesSeriesService moviesSeriesService;
     private final MoviesSeriesConverter moviesSeriesConverter;
+    private final WatchHistoryService watchHistoryService;
 
     @PostMapping("/save")
     public MoviesSeriesDto save(@RequestBody MoviesSeriesDto moviesSeriesDto) {
@@ -36,5 +40,10 @@ public class MoviesSeriesController {
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable UUID id){
         moviesSeriesService.delete( id);
+    }
+
+    @PostMapping("/{moviesSeriesId}/watch/{userId}")
+    public void watchMovie(@PathVariable UUID moviesSeriesId, @PathVariable UUID userId, @RequestParam Date watchedAt) {
+        watchHistoryService.addWatchHistory(userId, moviesSeriesId, watchedAt);
     }
 }

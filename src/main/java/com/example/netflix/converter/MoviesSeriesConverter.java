@@ -1,4 +1,4 @@
-package com.example.netflix.mapper;
+package com.example.netflix.converter;
 
 import com.example.netflix.dto.MoviesSeriesDto;
 import com.example.netflix.entity.MoviesSeries;
