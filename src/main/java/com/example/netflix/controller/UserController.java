@@ -39,4 +39,9 @@ public class UserController {
     public void addToFavorites(@PathVariable UUID userId, @PathVariable UUID moviesSeriesId) {
         moviesSeriesFavoriteService.addToFavorite(userId, moviesSeriesId);
     }
+
+    @GetMapping("/getAll")
+    public List<User> getAll() {
+        return userService.getAll();
+    }
 }

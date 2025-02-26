@@ -7,6 +7,7 @@ import com.example.netflix.repository.MoviesSeriesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -42,5 +43,9 @@ public class MoviesSeriesService {
 
     public void delete(UUID moviesSeriesId) {
         moviesSeriesRepository.deleteById(moviesSeriesId);
+    }
+
+    public List<MoviesSeries> getAll(){
+      return   moviesSeriesRepository.findAll();
     }
 }
